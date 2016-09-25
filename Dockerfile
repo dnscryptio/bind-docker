@@ -34,12 +34,14 @@ RUN set -x && \
     useradd -d /var/bind -g $BIND_USER -s /bin/false $BIND_USER && \
     rm -rf /tmp/* /var/tmp/*
 
+COPY config/* /opt/bind/etc/
+
 RUN set -x && \
+    chown -R ${BIND_USER}:${BIND_USER} /opt/bind && \
     apt-get autoremove -y && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
 EXPOSE 53/udp 53/tcp
 
-ENTRYPOINT ["/opt/bind/sbin/named"]
-CMD [""]
+ENTRYPOINT ["/opt/bind/sbin/named", "-4", "-c/opt/bind/etc/named.conf", "-g", "-unamed"]

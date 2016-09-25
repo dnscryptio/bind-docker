@@ -7,3 +7,4 @@ Todo:
 - copy config into image during build
 - allow local net recursion by default
 - validate download via isc gpg fingerprint
+- build proper rndc key when new container is created (if this is a problem...?)
