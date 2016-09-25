@@ -1,0 +1,18 @@
+sudo: required
+
+services:
+  - docker
+
+install:
+  - docker build -t dnscryptio/bind .
+  - docker run -d -p 127.0.0.1:53:53/udp dnscryptio/bind
+
+script:
+  - docker ps | grep bind
+  - dig @127.0.0.1 google.com
+
+after_success:
+  - if [ "$TRAVIS_BRANCH" == "master" ]; then
+    docker login -e="$DOCKER_EMAIL" -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD";
+    docker push dnscryptio/bind;
+    fi
