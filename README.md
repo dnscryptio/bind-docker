@@ -4,5 +4,6 @@ This docker image provides bind installed in /opt/bind prefix. Default config la
 
 Todo:
 - sudo to unpriv user
-- copy config into image suring build
+- copy config into image during build
 - allow local net recursion by default
+- validate download via isc gpg fingerprint
