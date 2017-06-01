@@ -8,8 +8,9 @@ script:
 - docker ps | grep bind
 - dig @127.0.0.1 google.com
 after_success:
+- export REPO=dnscryptio/bind
 - if [ "$TRAVIS_BRANCH" == "master" ]; then docker login -e="$DOCKER_EMAIL" -u="$DOCKER_USERNAME"
-  -p="$DOCKER_PASSWORD"; docker push dnscryptio/bind; fi
+  -p="$DOCKER_PASSWORD"; docker tag $REPO:9.10.4-P8; docker push $REPO; fi
 notifications:
   slack:
     secure: kcfuG052QgBqTMSyMg6nez6L93WwHyGz2cLrdBF6F4L4l+Ksib+e9MhiQhd4D9ll/ZbFA4fKeJAsZcQmBNt3hCddq7j7xCUuQaGFz9CIH2ZsWLQMxigLJAakkRz2OHOybz9IZVwXamngMQ8KGzSfHUG2roi2mlirtbVNwoZRtJFTHH89ncRpNPvN5wmTJq3/8OkWXh+k8b8cJc0ffuNSecApavx/DpBbOLFmavroRFpXsd2i65sb+Za5Id9FQ/AGdKvkAMLVjbB7X4rR7UQsmk1K+DZx0ZwKmFicHsTj9wPD6SYO0Z0dT5tYQOS4iWuO5lxP2h895jJ9B1U6lZnyCd5tYDoNY2EGt+5JaPMSw16Vt1E0oS5LpOF8h/WLgCkoiiJWO/qmCzGqoaZAI3athF1QqRFiHLe11NxPZavK52wdNqPVhEcgsEJ3qh7UbsMENqOv5uNDiB57Bf8qj51TuYB1aIcizUqLl+DXAMsLH0GWZHYwR8gdNgqePF+dVs8JBDqKifteMF392Q5WvNyIT6dDuyj1aVmaSyxmhQhJqAYDquFz14O/7o6vAunLgc2ylKphC1EAjthydN60nJffoWoAik6DhS5Sh9PD+CVwTVhY/YTXgPdpihZ1xYexJimlQHOKazf8EjDw/R95nRMuhLN4pP1+aYZif9QVCfdBxPc=
