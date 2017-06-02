@@ -24,7 +24,7 @@ RUN set -x && \
     mkdir -p /tmp/src && \
     cd /tmp/src && \
     curl -sSL $BIND_DOWNLOAD_URL -o bind.tar.gz && \
-    echo "${LIBSODIUM_SHA256} *bind.tar.gz" | sha256sum -c - && \
+    echo "${BIND_SHA256} *bind.tar.gz" | sha256sum -c - && \
     tar xzf bind.tar.gz && \
     rm -f bind.tar.gz && \
     cd bind-${BIND_VERSION} && \
