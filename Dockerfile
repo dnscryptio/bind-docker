@@ -16,7 +16,7 @@ RUN set -x && \
     apt-get install -y libssl-dev libcap-dev $BUILD_DEPENDENCIES
 
 ENV BIND_VERSION 9.10.4-P8
-#ENV BIND_SHA512 
+ENV BIND_SHA256 7dd356ab466ead8124d645f83719e620686998c81ce1d4eb0c52daffca7566eb
 ENV BIND_DOWNLOAD_URL http://ftp.isc.org/isc/bind9/${BIND_VERSION}/bind-${BIND_VERSION}.tar.gz
 ENV BIND_USER named
 
@@ -24,6 +24,7 @@ RUN set -x && \
     mkdir -p /tmp/src && \
     cd /tmp/src && \
     curl -sSL $BIND_DOWNLOAD_URL -o bind.tar.gz && \
+    echo "${LIBSODIUM_SHA256} *bind.tar.gz" | sha256sum -c - && \
     tar xzf bind.tar.gz && \
     rm -f bind.tar.gz && \
     cd bind-${BIND_VERSION} && \
