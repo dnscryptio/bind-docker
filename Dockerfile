@@ -15,8 +15,8 @@ RUN set -x && \
     apt-get upgrade -y && \
     apt-get install -y libssl-dev libcap-dev $BUILD_DEPENDENCIES
 
-ENV BIND_VERSION 9.10.4-P8
-ENV BIND_SHA256 7dd356ab466ead8124d645f83719e620686998c81ce1d4eb0c52daffca7566eb
+ENV BIND_VERSION 9.10.5-P1
+ENV BIND_SHA256 82fb885de927fdb4db0a0bb5e5efda839a857ff70adbcfcb0486a010924ae5cd
 ENV BIND_DOWNLOAD_URL http://ftp.isc.org/isc/bind9/${BIND_VERSION}/bind-${BIND_VERSION}.tar.gz
 ENV BIND_USER named
 
